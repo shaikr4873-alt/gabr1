@@ -1,12 +1,18 @@
 name: CI-WORKFLOW
+
 on:
   push:
     branches: master
-  workflow_dispatch: 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
 
 jobs:
   buil-test:
     runs-on: ubuntu-slim
+
     steps:
       - name: checkout
         uses: actions/checkout@v7
@@ -27,13 +33,13 @@ jobs:
 
       - name: test
         run: npm test
-        
+
       - name: Artifact upload
         uses: actions/upload-artifact@v7
         with:
           name: artifact-1
           path: |
-             package*
+            package*
 
       - name: deploy
         run: echo "my code is deployed"
