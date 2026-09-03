@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   buil-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout
