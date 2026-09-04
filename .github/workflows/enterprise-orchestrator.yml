@@ -29,7 +29,6 @@ on:
         type: boolean
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
@@ -55,7 +54,6 @@ jobs:
       - name: Build
         run: npm run build
 
-
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -63,10 +61,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Test
         run: npm test
-
 
   security:
     needs: test
