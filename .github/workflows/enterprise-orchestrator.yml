@@ -82,15 +82,6 @@ jobs:
           echo "Deploying to ${{ inputs.environment }}"
           echo "Deployed by ${{ inputs.username }}"
 
-      - name: Skip Deployment
-        if: ${{ inputs.deploy == false }}
-        run: echo "Deployment skipped"
-
-      - name: Rollback
-        if: failure()
-        run: echo "Rollback is done"
-
-
   info:
     runs-on: ubuntu-latest
 
